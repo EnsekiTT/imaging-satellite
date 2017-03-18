@@ -21,8 +21,7 @@ class SatelliteViewHandler(tornado.web.RequestHandler):
             reader = csv.DictReader(df, delimiter = '\t')
             data = []
             for row in reader:
-                data.append([float(row['sepalLength']), float(row['sepalWidth']), self.cluster(row['species'])])
-            print(data.shape)
+                data.append([float(row['sepalLength']), float(row['sepalWidth']), self.cluster(row['species']), "oXKxWo5e.jpg"])
         self.render('satelliteview.html', data=data)
 
 
