@@ -32,6 +32,7 @@ def main():
             try:
                 np_img, raw = read_img(_file)
                 if np_img.shape != (1, 9216):
+                    print("size error")
                     continue
                 x, y = som._BMU(np_img)
                 writer.writerow({'x': x, 'y': y, 'uri': _file})
