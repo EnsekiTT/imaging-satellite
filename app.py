@@ -7,7 +7,7 @@ class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write("Hello, world")
 
-class SatelliteViewHandler(tornado.web.RequestHandler):
+class IrisViewHandler(tornado.web.RequestHandler):
     def cluster(self, spec):
         if spec == 'setosa':
             return 0
@@ -24,11 +24,21 @@ class SatelliteViewHandler(tornado.web.RequestHandler):
                 data.append([float(row['sepalLength']), float(row['sepalWidth']), self.cluster(row['species']), "oXKxWo5e.jpg"])
         self.render('satelliteview.html', data=data)
 
+class SatelliteViewHandler(tornado.web.RequestHandler):
+    def get(self):
+        with open(os.path.join(os.getcwd(), "static", "erodata.tsv"),'r') as df:
+            reader = csv.DictReader(df, delimiter = '\t')
+            data = []
+            for row in reader:
+                data.append([float(row['x']), float(row['y']), row['x'], row['uri']])
+        self.render('satelliteview.html', data=data)
+
 
 def make_app():
     return tornado.web.Application([
         (r"/", MainHandler),
         (r"/satview", SatelliteViewHandler),
+        (r"/iris", IrisViewHandler),
     ],
     template_path=os.path.join(os.getcwd(), "templates"),
     static_path=os.path.join(os.getcwd(), "static"),
