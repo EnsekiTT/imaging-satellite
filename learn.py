@@ -5,7 +5,6 @@ import csv
 import os
 from PIL import Image, ImageFile
 import numpy as np
-import psycopg2
 import matplotlib.pyplot as plt
 import pickle
 from som import SOM
