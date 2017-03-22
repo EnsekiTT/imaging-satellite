@@ -34,7 +34,8 @@ def main():
                     print("size error")
                     continue
                 x, y = som._BMU(np_img)
-                writer.writerow({'x': x, 'y': y, 'uri': _file})
+                _path = _file.split("static/")[1]
+                writer.writerow({'x': x, 'y': y, 'uri': _path})
             except OSError as e:
                 print(e.strerror)
                 continue

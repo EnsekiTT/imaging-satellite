@@ -39,7 +39,7 @@ def main():
     som.learn(vectors)
     with open('som.pickle', mode='wb') as f:
         pickle.dump(som, f)
-    print(som.nodes.shape)
+    print(som.W.shape)
 
 
 if __name__ == "__main__":
